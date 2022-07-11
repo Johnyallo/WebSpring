@@ -21,13 +21,18 @@ public class Web {
     public static BufferedOutputStream out;
     public static ExecutorService threadPool;
 
-    public Web(Socket socket) {
-        this.socket = socket;
+//    public Web(Socket socket) {
+//        this.socket = socket;
+//        launch();
+//        processingOfConnection();
+//    }
+    public Web() {
+        this.socket = new Socket();
         launch();
         processingOfConnection();
     }
 
-    public void launch() {
+    public static void launch() {
         try (final var serverSocket = new ServerSocket(9999)) {
             while (true) {
                 socket = serverSocket.accept();
@@ -39,10 +44,16 @@ public class Web {
         }
     }
 
-    public void processingOfConnection() {
+    public static void processingOfConnection() {
         MyRunnable myRunnable = new MyRunnable();
         threadPool = Executors.newFixedThreadPool(64);
         threadPool.submit(myRunnable);
+    }
+
+    public static void main(String[] args) {
+//        launch();
+//        processingOfConnection();
+        Web web = new Web();
     }
 }
 
