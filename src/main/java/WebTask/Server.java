@@ -62,7 +62,7 @@ public class Server {
             final var mimeType = Files.probeContentType(filePath);//"application/octet-stream" "text/plain"
 
 
-            if (path.equals("/spring.svg")) {
+            if (path.equals("/classic.html")) {
                 final var template = Files.readString(filePath);
                 final var content = template.replace(
                         "{time}",
